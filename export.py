@@ -3,7 +3,7 @@ import bmesh
 import mathutils
 import os
 
-path = "d:/Project/blender_export/data/"
+path = "d:/Project/blender_export/example/data/"
 
 # Класс для хранения вершины
 class Vertex:
@@ -93,18 +93,18 @@ for obj in bpy.data.objects:
             json = "{\n"
 
             # Вершины
-            json += "\tvertices:["
+            json += "\t\"vertices\":["
             comma = False
             for v in vertices:
                 if (comma):
                     json += ","
                 else:
                     comma = True
-                json += "\n\t\t{x:%g, y:%g, z:%g, nx: %g, ny: %g, nz: %g, u: %g, v: %g}" % (v.x, v.y, v.z, v.nx, v.ny, v.nz, v.u, v.v)
+                json += "\n\t\t{\"x\":%g, \"y\":%g, \"z\":%g, \"nx\": %g, \"ny\": %g, \"nz\": %g, \"u\": %g, \"v\": %g}" % (v.x, v.y, v.z, v.nx, v.ny, v.nz, v.u, v.v)
             json += "\n\t],\n"
             
             # Индексы                
-            json += "\tindices:["
+            json += "\t\"indices\":["
             comma = False
             n = 0
             for i in indices:
