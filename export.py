@@ -5,6 +5,9 @@ import os
 
 path = "d:/Project/blender_export/example/data/"
 
+# Менять метами YZ
+swap_yz_state = True
+
 # Класс для хранения вершины
 class Vertex:
     
@@ -79,6 +82,14 @@ for obj in bpy.data.objects:
                         uv.y
                     )
                     
+                    if swap_yz_state:
+                        t = v.y
+                        v.y = v.z
+                        v.z = t
+                        t = v.ny
+                        v.ny = v.nz
+                        v.nz = t
+                    
                     # Получаем индекс вершины, если такой нет, добавляем ее в массив вершин
                     try:
                         index = vertices.index(v)
@@ -96,7 +107,7 @@ for obj in bpy.data.objects:
             json += "\t\"vertices\":["
             comma = False
             for v in vertices:
-                if (comma):
+                if comma:
                     json += ","
                 else:
                     comma = True
